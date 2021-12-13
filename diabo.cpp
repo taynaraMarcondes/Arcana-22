@@ -2,7 +2,7 @@
 
 void Diabo::updateStats()
 {
-  if (hp > 85)
+  if (hp > 0.5 * hp0)
   {
     atq = 10 + pre * 3 + vel * 2 + atqbas * 2;
     def = 3 + defbas * 3 + hp / 50;

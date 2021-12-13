@@ -15,8 +15,8 @@ void Cavaleiro::updateStats()
   else if (i == 1)
   {
     atqbas = 2;
-    defbas
-        vel = 1;
+    defbas = 1;
+    vel = 1;
     atq = 4 + pre * 2 + vel * 1 + atqbas * 1;
     def = 3 + defbas * 3 + hp / 50;
     i == 0;

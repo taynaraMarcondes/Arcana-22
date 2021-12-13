@@ -29,19 +29,19 @@ void mundo();
 void morte();
 void epilogo();
 
+Louco *heroi = Louco player{"Louco", 0, 0, 0, 0, 0, 0};
+Personagem *inimigo[5]
+{
+     new Cavaleiro("Cavaleiro", 0, 4, 1, 3, 2, 0);
+     new Diabo("Diabo", 0, 2, 4, 3, 3, 0);
+     new Fortuna("Fortuna", 0, 2, 2, 2, 2, 0);
+     new Juiz("Juiz", 0, 1, 5, 1, 1, 0);
+     new Sentinela("Sentinela", 0, 4, 2, 5, 2, 0);
+};
+
 int main()
 {
      setlocale(LC_ALL, "Portuguese");
-
-     Louco *heroi = criaPlayer();
-     Personagem *inimigo[5]
-     {
-          new Cavaleiro("Cavaleiro", 0, 4, 1, 3, x, 0);
-          new Diabo("Diabo", 0, 2, 4, x, x, 0);
-          new Fortuna("Fortuna", 0, x, x, 2, x, 0);
-          new Juiz("Juiz", 0, 1, 5, 1, 1, 0);
-          new Sentinela("Sentinela", 0, 4, x, 5, x, 0);
-     };
 
      int op = 0;
      while (op != 3)
@@ -59,7 +59,7 @@ int main()
                break;
           case 2:
                beginning();
-               act1beg(heroi, inimigo[0]);
+               act1beg();
                break;
           default:
                break;
@@ -152,9 +152,10 @@ void beginning()
           << "| \"Oh vejo que escolheu desbravar as provações e lutar pela segunda chance!       |\n"
           << "| Você recebeu X pontos de experiência, ditribua-os da maneira que achar melhor.\" |\n"
           << " ----------------------------------------------------------------------------------\n";
+     player.allocatePoint();
 }
 
-void act1beg(Louco &player, Cavaleiro &inimigo)
+void act1beg()
 {
      cout << " ----------------------------------------------------------------------------------------------------------------------------------------------------------\n"
           << "|                                                     1ª PROVAÇÃO - DEMONSTRAR SUA DETERMINAÇÃO                                                           |\n"
@@ -166,7 +167,13 @@ void act1beg(Louco &player, Cavaleiro &inimigo)
           << "| logo tornando sua determinação em manter sua amada a salvo em grande força e motivação para cumprir sua missão.                                         |\n"
           << " ----------------------------------------------------------------------------------------------------------------------------------------------------------\n";
 
-     batalha(player, inimigo);
+     if (batalha(heroi, inimigo[0]) == 1)
+     {
+          act1end(Louco & player, Fortuna & inimigo);
+     }
+     else
+     {
+     }
 }
 
 void act1end()
@@ -200,9 +207,10 @@ void act1end()
      cout << "\nPressione enter pra continuar ..";
      getchar();
      system("clear||cls");
+     act2beg()
 }
 
-void act2beg(Louco &player, Fortuna &inimigo)
+void act2beg()
 {
 
      cout << " -------------------------------------------------------------------------------------------------------------------------------------------------------------\n"
@@ -225,7 +233,13 @@ void act2beg(Louco &player, Fortuna &inimigo)
      cout << "\nPressione enter pra continuar ..";
      getchar();
      system("clear||cls");
-     batalha(player, inimigo);
+     if (batalha(heroi, inimigo[1]) == 1)
+     {
+          act2end();
+     }
+     else
+     {
+     }
 }
 
 void act2end()
@@ -262,9 +276,11 @@ void act2end()
      cout << "\nPressione enter pra continuar ..";
      getchar();
      system("clear||cls");
+
+     act3beg();
 }
 
-void act3beg(Louco &player, Juiz &inimigo)
+void act3beg()
 {
      cout << " ---------------------------------------------------------------------------------------------------------------------- \n"
           << "|                                          3ª PROVAÇÃO - PROVAR SUA INOCÊNCIA                                          |\n"
@@ -303,7 +319,13 @@ void act3beg(Louco &player, Juiz &inimigo)
      cout << "\nPressione enter pra continuar ..";
      getchar();
      system("clear||cls");
-     batalha(player, inimigo);
+     if (batalha(heroi, inimigo[2]) == 1)
+     {
+          act3end();
+     }
+     else
+     {
+     }
 }
 
 void act3end()
@@ -330,9 +352,10 @@ void act3end()
      cout << "\nPressione enter pra continuar ..";
      getchar();
      system("clear||cls");
+     act4beg();
 }
 
-void act4beg(Louco &player, Diabo &inimigo)
+void act4beg()
 {
      cout << " ---------------------------------------------------------------------------------------------------------------------- \n"
           << "|                                           4ª PROVAÇÃO - ENCARAR SEUS DEMÔNIOS                                        |\n"
@@ -362,7 +385,13 @@ void act4beg(Louco &player, Diabo &inimigo)
      getchar();
      system("clear||cls");
 
-     batalha(player, inimigo);
+     if (batalha(heroi, inimigo[3]) == 1)
+     {
+          act4end();
+     }
+     else
+     {
+     }
 }
 
 void act4end()
@@ -387,9 +416,10 @@ void act4end()
      cout << "\nPressione enter pra continuar ..";
      getchar();
      system("clear||cls");
+     act5beg();
 }
 
-void act5beg(Louco &player, Sentinela &inimigo)
+void act5beg()
 {
      cout << " ------------------------------------------------------------------------------------------------------------------------------------------------- \n"
           << "|                                                     5ª PROVAÇÃO - ALCANÇAR OS CÉUS                                                              |\n"
@@ -406,7 +436,13 @@ void act5beg(Louco &player, Sentinela &inimigo)
      getchar();
      system("clear||cls");
 
-     batalha(player, inimigo);
+     if (batalha(heroi, inimigo[4]) == 1)
+     {
+          mundo();
+     }
+     else
+     {
+     }
 }
 
 void mundo()
@@ -465,6 +501,7 @@ void mundo()
      cout << "\nPressione enter pra continuar ..";
      getchar();
      system("clear||cls");
+     epilogo();
 }
 
 void morte()

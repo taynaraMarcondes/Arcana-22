@@ -107,7 +107,7 @@ int batalha(Louco &player, Classe &inimigo)
   if (win)
   {
     player.allocatePoint();
-    return 0;
+    return 1;
   }
   else
   {
@@ -126,11 +126,11 @@ int batalha(Louco &player, Classe &inimigo)
       {
       case 1:
         batalha(player, inimigo);
-        return win;
+        return 0;
         break;
 
       case 2:
-        return win;
+        return 0;
         break;
 
       default:
